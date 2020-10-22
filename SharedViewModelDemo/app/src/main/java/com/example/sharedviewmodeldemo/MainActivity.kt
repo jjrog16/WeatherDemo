@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import com.example.sharedviewmodeldemo.ui.source_fragment.SourceFragment
+import com.example.sharedviewmodeldemo.ui.target_fragment.TargetFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -32,6 +33,10 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.source, SourceFragment())
                 .commit()
+
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.target, TargetFragment())
+                    .commit()
         }
 
     }
