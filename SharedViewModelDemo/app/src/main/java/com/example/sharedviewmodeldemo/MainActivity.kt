@@ -11,9 +11,6 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var sourceFragment: Fragment
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,23 +18,17 @@ class MainActivity : AppCompatActivity() {
         // Plant tree to enable Debugging with Timber
         Timber.plant(Timber.DebugTree())
 
-
-
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
         if(source != null){
             if (savedInstanceState != null){
                 return
             }
-
+            // Add both fragments to the MainActivity xml
             supportFragmentManager.beginTransaction()
                 .add(R.id.source, SourceFragment())
+                .add(R.id.target, TargetFragment())
                 .commit()
-
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.target, TargetFragment())
-                    .commit()
         }
-
     }
 }
