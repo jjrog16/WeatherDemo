@@ -27,13 +27,15 @@ class SourceFragment  : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bt_source_send.setOnClickListener{
-
             viewModel.setText(et_source.text.toString())
+            et_source.text.clear()
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        // ViewModelProvider needs the Activity in order to communicate between its fragment children
         viewModel = activity?.run {
             ViewModelProvider(this).get(SharedViewModel::class.java)
         } ?: throw Exception("Invalid Activity")

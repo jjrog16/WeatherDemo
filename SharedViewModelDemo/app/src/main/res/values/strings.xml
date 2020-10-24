@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SharedViewModelDemo</string>
+    <string name="source">Source</string>
+    <string name="send">Send</string>
+    <string name="target">Target</string>
+</resources>
