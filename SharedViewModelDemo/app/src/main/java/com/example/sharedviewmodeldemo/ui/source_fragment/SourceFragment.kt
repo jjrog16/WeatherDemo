@@ -13,7 +13,7 @@ import com.example.sharedviewmodeldemo.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_source.*
 import kotlinx.android.synthetic.main.fragment_target.*
 
-class SourceFragment  : Fragment() {
+class SourceFragment : Fragment() {
 
     lateinit var viewModel: SharedViewModel
     override fun onCreateView(
