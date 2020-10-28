@@ -2,6 +2,11 @@ package com.example.pointmax2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -11,5 +16,21 @@ class MainActivity : AppCompatActivity() {
 
         // Plant tree to enable Debugging with Timber
         Timber.plant(Timber.DebugTree())
+
+        // Find the bottomNavigation bar
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+        // Find the fragment that will host the different fragments
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_wallet
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 }

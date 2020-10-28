@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation.xml"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/navigation_home"
         android:name="com.example.pointmax2.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="@string/title_home" />
+    <fragment
+        android:id="@+id/navigation_wallet"
+        android:name="com.example.pointmax2.ui.wallet.WalletFragment"
+        android:label="@string/title_wallet" />
 </navigation>
