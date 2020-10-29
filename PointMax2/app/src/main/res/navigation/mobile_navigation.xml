@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation.xml"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation.xml"
     app:startDestination="@id/navigation_home">
 
     <fragment
@@ -11,4 +13,9 @@
         android:id="@+id/navigation_wallet"
         android:name="com.example.pointmax2.ui.wallet.WalletFragment"
         android:label="@string/title_wallet" />
+    <fragment
+        android:id="@+id/navigation_addCustomCardFragment"
+        android:name="com.example.pointmax2.ui.add_custom_card.AddCustomCardFragment"
+        android:label="fragment_add_custom_card"
+        tools:layout="@layout/fragment_add_custom_card" />
 </navigation>
