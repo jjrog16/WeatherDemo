@@ -1,6 +1,17 @@
 <resources>
-    <string name="app_name">PointMax 2</string>
-    <string name="title_wallet">Wallet</string>
+    <string name="app_name">PointMax</string>
     <string name="title_home">Home</string>
+    <string name="title_wallet">Wallet</string>
+    <string name="enter_card_name">Enter card name</string>
+    <string name="add_card_done">Done</string>
+    <string name="empty_not_saved">You didn\'t enter a name, silly</string>
+    <string name="delete_card">Delete Card</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="don_t_see_your_card_add_your_own">Don\'t see your card? Add your own!</string>
+    <string name="card_already_exists">Card already exists</string>
+    <string name="earn_rate">Earn Rate</string>
+    <string name="general">General:</string>
+    <string name="default_earn_rate">1.0</string>
     <string name="choose_a_category">Choose a Category</string>
 </resources>
