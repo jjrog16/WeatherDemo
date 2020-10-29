@@ -2,4 +2,5 @@
     <string name="app_name">PointMax 2</string>
     <string name="title_wallet">Wallet</string>
     <string name="title_home">Home</string>
+    <string name="choose_a_category">Choose a Category</string>
 </resources>
