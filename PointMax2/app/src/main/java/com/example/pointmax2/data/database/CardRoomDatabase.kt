@@ -1,11 +1,11 @@
 package com.example.pointmax2.data.database
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.pointmax2.data.database.entities.CardEntity
-import kotlinx.coroutines.CoroutineScope
 
 // Annotates class to be a Room Database with a table (entity) of the Card class
 @Database(entities = [CardEntity::class], version = 1, exportSchema = false)
@@ -21,7 +21,7 @@ abstract class CardRoomDatabase : RoomDatabase() {
 
         fun getDatabase(
                 context: Context,
-                scope: CoroutineScope
+                scope: Application
         ): CardRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {

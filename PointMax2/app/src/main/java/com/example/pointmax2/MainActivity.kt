@@ -3,15 +3,22 @@ package com.example.pointmax2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.pointmax2.data.database.CardRoomDatabase
+import com.example.pointmax2.data.repositories.CardRepository
+import com.example.pointmax2.ui.wallet.WalletFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: ActivityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,5 +59,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        walletFAB.setOnClickListener {
+            val action = WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment()
+            navController.navigate(action)
+        }
+
+        // THIS IS BAD! Move this to Dependency Injection.
+        val database = CardRoomDatabase
+        val repository = CardRepository(database.getDatabase(this, application).cardDao())
+        val viewModelFactory = ActivityViewModelFactory(repository)
+        viewModel = ViewModelProvider(this,viewModelFactory)[ActivityViewModel::class.java]
+
     }
 }

@@ -26,5 +26,6 @@ class HomeFragment : Fragment() {
         viewModel = activity?.run {
             ViewModelProvider(this).get(ActivityViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
+
     }
 }
