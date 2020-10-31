@@ -6,195 +6,153 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.add_custom_card.AddCustomCardFragment">
 
-    <ScrollView
-        android:id="@+id/host_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+    <EditText
+        android:id="@+id/et_new_card_name"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/enter_card_name"
+        android:ems="10"
+        android:hint="@string/enter_card_name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/bt_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/add_card_done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/et_new_card_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.442" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_general"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/general"
+        app:layout_constraintTop_toBottomOf="@id/et_new_card_name"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <EditText
-                    android:id="@+id/new_card_name"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/enter_card_name"
-                    android:ems="10"
-                    android:hint="@string/enter_card_name"
-                    android:inputType="textPersonName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.111"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/et_generalEarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/earn_rate"
+        android:text="@string/default_earn_rate"
+        app:layout_constraintStart_toEndOf="@id/tv_general"
+        app:layout_constraintTop_toBottomOf="@id/et_new_card_name"/>
 
-                <Button
-                    android:id="@+id/add_card_done"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/add_card_done"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.6"
-                    app:layout_constraintStart_toEndOf="@+id/new_card_name"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.442" />
-            </LinearLayout>
+    <TextView
+        android:id="@+id/tv_groceries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Groceries:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_general"/>
 
+    <EditText
+        android:id="@+id/et_groceriesEarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/earn_rate"
+        android:text="@string/default_earn_rate"
+        app:layout_constraintStart_toEndOf="@id/tv_groceries"
+        app:layout_constraintTop_toBottomOf="@id/et_generalEarn"/>
 
-            <LinearLayout
-                android:id="@+id/layout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="visible">
+    <TextView
+        android:id="@+id/tv_restaurants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Restaurants:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_groceries"/>
 
-                <TextView
-                    android:id="@+id/general"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/general" />
+    <EditText
+        android:id="@+id/et_restaurantsEarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/earn_rate"
+        android:text="@string/default_earn_rate"
+        app:layout_constraintStart_toEndOf="@id/tv_restaurants"
+        app:layout_constraintTop_toBottomOf="@id/et_groceriesEarn"/>
 
-                <EditText
-                    android:id="@+id/generalEarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate" />
-            </LinearLayout>
+    <TextView
+        android:id="@+id/tv_airlines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Airlines:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_restaurants" />
 
-            <LinearLayout
-                android:id="@+id/layout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+    <EditText
+        android:id="@+id/et_airlinesEarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/earn_rate"
+        android:text="@string/default_earn_rate"
+        app:layout_constraintStart_toEndOf="@+id/tv_airlines"
+        app:layout_constraintTop_toBottomOf="@+id/et_restaurantsEarn" />
 
-                <TextView
-                    android:id="@+id/groceries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Groceries:" />
+    <TextView
+        android:id="@+id/tv_travel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Travel:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_airlines" />
 
-                <EditText
-                    android:id="@+id/groceriesEarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate" />
-            </LinearLayout>
+    <EditText
+        android:id="@+id/et_travelEarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/earn_rate"
+        android:text="@string/default_earn_rate"
+        app:layout_constraintStart_toEndOf="@+id/tv_travel"
+        app:layout_constraintTop_toBottomOf="@+id/et_airlinesEarn" />
 
-            <LinearLayout
-                android:id="@+id/layout3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tv_gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Gas:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_travel" />
 
-                <TextView
-                    android:id="@+id/restaurants"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Restaurants:" />
+    <EditText
+        android:id="@+id/et_gasEarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/earn_rate"
+        android:text="@string/default_earn_rate"
+        app:layout_constraintStart_toEndOf="@+id/tv_gas"
+        app:layout_constraintTop_toBottomOf="@+id/et_travelEarn" />
 
-                <EditText
-                    android:id="@+id/restaurantsEarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/airlines"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Airlines:" />
-
-                <EditText
-                    android:id="@+id/airlinesEarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/travel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Travel:" />
-
-                <EditText
-                    android:id="@+id/travelEarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/gas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Gas:" />
-
-                <EditText
-                    android:id="@+id/gasEarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/delete_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/delete"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/bt_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

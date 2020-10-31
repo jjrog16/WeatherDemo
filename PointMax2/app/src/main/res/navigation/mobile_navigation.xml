@@ -20,5 +20,9 @@
     <fragment
         android:id="@+id/navigation_addCustomCardFragment"
         android:name="com.example.pointmax2.ui.add_custom_card.AddCustomCardFragment"
-        tools:layout="@layout/fragment_add_custom_card" />
+        tools:layout="@layout/fragment_add_custom_card" >
+        <action
+            android:id="@+id/action_navigation_addCustomCardFragment_to_navigation_wallet"
+            app:destination="@id/navigation_wallet" />
+    </fragment>
 </navigation>

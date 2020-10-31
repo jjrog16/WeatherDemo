@@ -15,9 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class PointMaxActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ActivityViewModel
+    private lateinit var viewModel: PointMaxViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +65,11 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(action)
         }
 
-        // THIS IS BAD! Move this to Dependency Injection.
+        // Move this to Dependency Injection.
         val database = CardRoomDatabase
         val repository = CardRepository(database.getDatabase(this, application).cardDao())
-        val viewModelFactory = ActivityViewModelFactory(repository)
-        viewModel = ViewModelProvider(this,viewModelFactory)[ActivityViewModel::class.java]
+        val viewModelFactory = PointMaxViewModelFactory(repository)
+        viewModel = ViewModelProvider(this,viewModelFactory)[PointMaxViewModel::class.java]
 
     }
 }

@@ -5,15 +5,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.pointmax2.data.repositories.CardRepository
 
 /**
- * Simple ViewModel factory that provides the card name and context to the ViewModel.
+ * Simple ViewModel factory that provides the repository to the ViewModel.
  */
-class ActivityViewModelFactory(
+class PointMaxViewModelFactory(
         private val repository: CardRepository
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ActivityViewModel::class.java)) {
-            return ActivityViewModel(repository) as T
+        if (modelClass.isAssignableFrom(PointMaxViewModel::class.java)) {
+            return PointMaxViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

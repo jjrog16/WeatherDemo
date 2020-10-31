@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.pointmax2.ActivityViewModel
+import com.example.pointmax2.PointMaxViewModel
 import com.example.pointmax2.R
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: ActivityViewModel
+    private lateinit var viewModel: PointMaxViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = activity?.run {
-            ViewModelProvider(this).get(ActivityViewModel::class.java)
+            ViewModelProvider(this).get(PointMaxViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
     }

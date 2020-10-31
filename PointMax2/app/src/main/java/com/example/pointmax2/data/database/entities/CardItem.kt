@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class CardEntity(
+data class CardItem(
     @PrimaryKey
     var cardName: String,
     var general: Double = 1.0,

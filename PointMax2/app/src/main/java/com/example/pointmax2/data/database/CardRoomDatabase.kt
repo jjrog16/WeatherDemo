@@ -5,10 +5,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.pointmax2.data.database.entities.CardEntity
+import com.example.pointmax2.data.database.entities.CardItem
 
 // Annotates class to be a Room Database with a table (entity) of the Card class
-@Database(entities = [CardEntity::class], version = 1, exportSchema = false)
+@Database(entities = [CardItem::class], version = 1, exportSchema = false)
 abstract class CardRoomDatabase : RoomDatabase() {
 
     abstract fun cardDao(): CardDao

@@ -3,22 +3,24 @@ package com.example.pointmax2
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pointmax2.data.database.entities.CardEntity
+import androidx.lifecycle.viewModelScope
+import com.example.pointmax2.data.database.entities.CardItem
 import com.example.pointmax2.data.repositories.CardRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class ActivityViewModel(private val repository: CardRepository) : ViewModel(){
+class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
 
     // The external LiveData interface to the property is immutable, so only this class can modify
     val allCards = repository.allCards
 
     // Internally, we use a MutableLiveData to handle navigation to the selected cxa
-    private val _navigateToSelectedCard = MutableLiveData<CardEntity>()
+    private val _navigateToSelectedCard = MutableLiveData<CardItem>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedCard: LiveData<CardEntity>
+    val navigateToSelectedCard: LiveData<CardItem>
         get() = _navigateToSelectedCard
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -29,9 +31,9 @@ class ActivityViewModel(private val repository: CardRepository) : ViewModel(){
 
     /**
      * When the card is clicked, set the [_navigateToSelectedCard] [MutableLiveData]
-     * @param card The [Card] that was clicked on.
+     * @param card The [CardItem] that was clicked on.
      */
-    fun displayCardDetails(card: CardEntity) {
+    fun displayCardDetails(card: CardItem) {
         _navigateToSelectedCard.value = card
     }
 
@@ -40,5 +42,19 @@ class ActivityViewModel(private val repository: CardRepository) : ViewModel(){
      */
     fun displayCardDetailsComplete() {
         _navigateToSelectedCard.value = null
+    }
+
+    /**
+     * Launching a new coroutine to insert the data in a non-blocking way
+     */
+    fun insert(card: CardItem) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insert(card)
+    }
+
+    /**
+     * Launching a new coroutine to delete the data in a non-blocking way
+     */
+    fun deleteByName(cardName: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteByName(cardName)
     }
 }
