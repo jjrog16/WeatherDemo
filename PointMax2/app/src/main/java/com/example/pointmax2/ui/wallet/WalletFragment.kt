@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.pointmax2.PointMaxViewModel
+import com.example.pointmax2.ui.PointMaxViewModel
 import com.example.pointmax2.R
-import com.example.pointmax2.other.CardAdapter
+import com.example.pointmax2.adapters.CardAdapter
+import com.example.pointmax2.ui.PointMaxActivity
 import kotlinx.android.synthetic.main.fragment_wallet.*
 
 class WalletFragment : Fragment() {
 
     private lateinit var viewModel: PointMaxViewModel
+    private lateinit var cardAdapter: CardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,22 +27,38 @@ class WalletFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_wallet, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as PointMaxActivity).viewModel
 
-        val adapter = CardAdapter(listOf())
+        setUpRecyclerView()
 
-        viewModel = activity?.run {
-            ViewModelProvider(this).get(PointMaxViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
+        // Load the cards into the adapter
+        viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
+            cards?.let {
+                cardAdapter.differ.submitList(it)
+            }
 
-        rv_wallet.layoutManager = activity.run { LinearLayoutManager(this) }
-        rv_wallet.adapter = adapter
-
-        viewModel.allCards.observe(viewLifecycleOwner, Observer {
-            adapter.cards = it
-            adapter.notifyDataSetChanged()
         })
 
+        // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
+        // After navigating, call displayCardDetailsComplete() so that the ViewModel is ready
+        // for another navigation event
+        viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                // Must find the NavController from the Fragment
+                this.findNavController()
+                        .navigate(WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment())
+
+            }
+        })
+    }
+
+    private fun setUpRecyclerView(){
+        cardAdapter = CardAdapter()
+        rv_wallet.apply {
+            adapter = cardAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
 }

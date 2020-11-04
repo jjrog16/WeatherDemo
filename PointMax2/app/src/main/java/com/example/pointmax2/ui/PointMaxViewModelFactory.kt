@@ -1,4 +1,4 @@
-package com.example.pointmax2
+package com.example.pointmax2.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

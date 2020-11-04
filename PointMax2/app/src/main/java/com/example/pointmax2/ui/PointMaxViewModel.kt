@@ -1,4 +1,4 @@
-package com.example.pointmax2
+package com.example.pointmax2.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -18,8 +18,20 @@ abstract class CardRoomDatabase : RoomDatabase() {
         // same time.
         @Volatile
         private var INSTANCE: CardRoomDatabase? = null
+        private val LOCK = Any()
 
-        fun getDatabase(
+        operator fun invoke(context: Context) = INSTANCE ?: synchronized(LOCK){
+            INSTANCE ?: createDatabase(context).also{ INSTANCE = it}
+        }
+
+        private fun createDatabase(context: Context) =
+                Room.databaseBuilder(
+                        context.applicationContext,
+                        CardRoomDatabase::class.java,
+                        "card_database"
+                ).build()
+
+        /*fun getDatabase(
                 context: Context,
                 scope: Application
         ): CardRoomDatabase {
@@ -36,6 +48,6 @@ abstract class CardRoomDatabase : RoomDatabase() {
                 INSTANCE = instance
                 return instance
             }
-        }
+        }*/
     }
 }

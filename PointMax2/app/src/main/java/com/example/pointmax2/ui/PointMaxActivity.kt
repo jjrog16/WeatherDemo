@@ -1,4 +1,4 @@
-package com.example.pointmax2
+package com.example.pointmax2.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.pointmax2.R
 import com.example.pointmax2.data.database.CardRoomDatabase
 import com.example.pointmax2.data.repositories.CardRepository
 import com.example.pointmax2.ui.wallet.WalletFragmentDirections
@@ -17,7 +18,7 @@ import timber.log.Timber
 
 class PointMaxActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: PointMaxViewModel
+    lateinit var viewModel: PointMaxViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class PointMaxActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
 
         // Find the bottomNavigation bar
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation_view)
 
         // Find the fragment that will host the different fragments
         val navController = findNavController(R.id.nav_host_fragment)
@@ -36,11 +37,12 @@ class PointMaxActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_wallet
+                    R.id.navigation_home, R.id.navigation_wallet
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
 
         // Set the visibility of the navigation bar and the FAB
         navController.addOnDestinationChangedListener{_, destination, _ ->
@@ -67,7 +69,8 @@ class PointMaxActivity : AppCompatActivity() {
 
         // Move this to Dependency Injection.
         val database = CardRoomDatabase
-        val repository = CardRepository(database.getDatabase(this, application).cardDao())
+        //val repository = CardRepository(database.getDatabase(this, application).cardDao())
+        val repository = CardRepository(CardRoomDatabase(this))
         val viewModelFactory = PointMaxViewModelFactory(repository)
         viewModel = ViewModelProvider(this,viewModelFactory)[PointMaxViewModel::class.java]
 
