@@ -34,7 +34,6 @@ class WalletFragment : Fragment() {
 
         setUpRecyclerView()
 
-
         // Load the cards into the adapter
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             cards?.let {
@@ -42,34 +41,16 @@ class WalletFragment : Fragment() {
             }
         })
 
-
         cardAdapter.setOnItemClickListener {
-
-           // viewModel.displayCardDetails(it)
-
-            // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
-            // After navigating, call displayCardDetailsComplete() so that the ViewModel is ready
-            // for another navigation event
-            viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
-                if (it != null) {
-                    cardAdapter.setOnItemClickListener {
-
-                        Timber.i("Card is -> ${it}")
-                        // Must find the NavController from the Fragment
-                        findNavController()
-                                .navigate(WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment())
-
-                    }
-                }
-            })
-
+            // Must find the NavController from the Fragment
+            findNavController().navigate(
+                    WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment(it)
+            )
         }
-
-
     }
 
     private fun setUpRecyclerView(){
-        cardAdapter = CardAdapter(viewModel)
+        cardAdapter = CardAdapter()
         rv_wallet.apply {
             adapter = cardAdapter
             layoutManager = LinearLayoutManager(activity)

@@ -28,21 +28,21 @@ class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    /**
-     * When the card is clicked, set the [_navigateToSelectedCard] [MutableLiveData]
-     * @param card The [CardItem] that was clicked on.
-     */
-    fun displayCardDetails(card: CardItem) {
-        _navigateToSelectedCard.value = card
-    }
-
-    /**
-     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
-     */
-    fun displayCardDetailsComplete() {
-        _navigateToSelectedCard.value = null
-    }
+//
+//    /**
+//     * When the card is clicked, set the [_navigateToSelectedCard] [MutableLiveData]
+//     * @param card The [CardItem] that was clicked on.
+//     */
+//    fun displayCardDetails(card: CardItem) {
+//        _navigateToSelectedCard.value = card
+//    }
+//
+//    /**
+//     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
+//     */
+//    fun displayCardDetailsComplete() {
+//        _navigateToSelectedCard.value = null
+//    }
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way

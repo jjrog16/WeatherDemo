@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.pointmax2.R
 import com.example.pointmax2.data.database.CardRoomDatabase
+import com.example.pointmax2.data.database.entities.CardItem
 import com.example.pointmax2.data.repositories.CardRepository
 import com.example.pointmax2.ui.wallet.WalletFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -63,7 +64,7 @@ class PointMaxActivity : AppCompatActivity() {
         }
 
         walletFAB.setOnClickListener {
-            val action = WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment()
+            val action = WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment(CardItem(cardName = ""))
             navController.navigate(action)
         }
 
