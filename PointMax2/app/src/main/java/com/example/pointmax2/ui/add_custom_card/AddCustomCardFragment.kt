@@ -56,6 +56,14 @@ class AddCustomCardFragment : Fragment(){
                                 Toast.LENGTH_SHORT
                         ).show()
                     }
+
+                    isCardInList(cardList, et_new_card_name.text.toString().toUpperCase()) -> {
+                        Toast.makeText(
+                                context,
+                                getString(R.string.card_already_exists),
+                                Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     else -> {
                         viewModel.insert(
                                 CardItem(
@@ -104,6 +112,13 @@ class AddCustomCardFragment : Fragment(){
         et_travelEarn.setText(passedCard.travel.toString())
         et_groceriesEarn.setText(passedCard.groceries.toString())
         et_gasEarn.setText(passedCard.gas.toString())
+    }
+
+    private fun isCardInList(cardList: List<CardItem>, cardToEnter: String) : Boolean{
+        cardList.forEach {
+            if(it.cardName == cardToEnter) return true
+        }
+        return false
     }
 
 }
