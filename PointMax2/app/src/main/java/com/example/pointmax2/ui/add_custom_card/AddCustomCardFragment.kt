@@ -44,7 +44,6 @@ class AddCustomCardFragment : Fragment(){
         initializeCustomCard(passedCard)
 
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cardList ->
-
             bt_done.setOnClickListener {
                 when {
                     // If card has no name or has spaces, do not add it
@@ -57,6 +56,7 @@ class AddCustomCardFragment : Fragment(){
                         ).show()
                     }
 
+                    // Check if there is already a card in the database
                     isCardInList(cardList, et_new_card_name.text.toString().toUpperCase()) -> {
                         Toast.makeText(
                                 context,
@@ -64,6 +64,7 @@ class AddCustomCardFragment : Fragment(){
                                 Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> {
                         viewModel.insert(
                                 CardItem(
@@ -86,7 +87,6 @@ class AddCustomCardFragment : Fragment(){
                     }
                 }
             }
-
         })
 
         bt_delete.setOnClickListener{
@@ -104,6 +104,7 @@ class AddCustomCardFragment : Fragment(){
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
 
+    // Start the AddCustomCardFragment with information passed in from navigation
     private fun initializeCustomCard(passedCard: CardItem){
         et_new_card_name.setText(passedCard.cardName)
         et_generalEarn.setText(passedCard.general.toString())
@@ -114,6 +115,7 @@ class AddCustomCardFragment : Fragment(){
         et_gasEarn.setText(passedCard.gas.toString())
     }
 
+    // Check if the name about to be entered is already in the list of cards
     private fun isCardInList(cardList: List<CardItem>, cardToEnter: String) : Boolean{
         cardList.forEach {
             if(it.cardName == cardToEnter) return true
