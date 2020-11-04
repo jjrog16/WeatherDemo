@@ -12,8 +12,9 @@ import com.example.pointmax2.ui.PointMaxViewModel
 import com.example.pointmax2.R
 import com.example.pointmax2.data.database.entities.CardItem
 import kotlinx.android.synthetic.main.card_item.view.*
+import timber.log.Timber
 
-class CardAdapter: RecyclerView.Adapter<CardAdapter.CardViewHolder>(){
+class CardAdapter(val viewModel: PointMaxViewModel): RecyclerView.Adapter<CardAdapter.CardViewHolder>(){
 
     inner class CardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -49,7 +50,12 @@ class CardAdapter: RecyclerView.Adapter<CardAdapter.CardViewHolder>(){
         holder.itemView.apply {
             tv_card.text = card.cardName
             setOnClickListener {
-                onItemClickListener?.let { it(card) }
+                Timber.i("$card selected")
+                onItemClickListener?.let {
+                    viewModel.displayCardDetails(card)
+                    it(card)
+
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ import com.example.pointmax2.R
 import com.example.pointmax2.adapters.CardAdapter
 import com.example.pointmax2.ui.PointMaxActivity
 import kotlinx.android.synthetic.main.fragment_wallet.*
+import timber.log.Timber
 
 class WalletFragment : Fragment() {
 
@@ -33,29 +34,42 @@ class WalletFragment : Fragment() {
 
         setUpRecyclerView()
 
+
         // Load the cards into the adapter
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             cards?.let {
                 cardAdapter.differ.submitList(it)
             }
-
         })
 
-        // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
-        // After navigating, call displayCardDetailsComplete() so that the ViewModel is ready
-        // for another navigation event
-        viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                // Must find the NavController from the Fragment
-                this.findNavController()
-                        .navigate(WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment())
 
-            }
-        })
+        cardAdapter.setOnItemClickListener {
+
+           // viewModel.displayCardDetails(it)
+
+            // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
+            // After navigating, call displayCardDetailsComplete() so that the ViewModel is ready
+            // for another navigation event
+            viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    cardAdapter.setOnItemClickListener {
+
+                        Timber.i("Card is -> ${it}")
+                        // Must find the NavController from the Fragment
+                        findNavController()
+                                .navigate(WalletFragmentDirections.actionNavigationWalletToNavigationAddCustomCardFragment())
+
+                    }
+                }
+            })
+
+        }
+
+
     }
 
     private fun setUpRecyclerView(){
-        cardAdapter = CardAdapter()
+        cardAdapter = CardAdapter(viewModel)
         rv_wallet.apply {
             adapter = cardAdapter
             layoutManager = LinearLayoutManager(activity)
