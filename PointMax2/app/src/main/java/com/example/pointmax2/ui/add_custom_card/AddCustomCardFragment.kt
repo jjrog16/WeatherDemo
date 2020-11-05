@@ -43,7 +43,7 @@ class AddCustomCardFragment : Fragment(){
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cardList ->
             bt_done.setOnClickListener {
                 val cardToBeEntered = et_new_card_name.text.toString().toUpperCase()
-                if(checkIfFieldsValid()){
+                if(areFieldsValid()){
                     when {
                         // Check if there is already a card in the database and replace the card if
                         // there is a card in the database
@@ -105,7 +105,7 @@ class AddCustomCardFragment : Fragment(){
     }
 
     // If any fields are empty, show a toast
-    private fun checkIfFieldsValid() : Boolean{
+    private fun areFieldsValid() : Boolean{
         when {
             isTextFieldEmpty(et_new_card_name.text) -> {
                 fieldToast("Card Name")

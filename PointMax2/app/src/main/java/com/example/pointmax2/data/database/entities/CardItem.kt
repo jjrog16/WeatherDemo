@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity
 data class CardItem(
-        @PrimaryKey(autoGenerate = true) var id: Int = 0,
+        @PrimaryKey(autoGenerate = true) var id: Long = 0L,
         var cardName: String,
         var general: Double = 1.0,
         var groceries: Double = general,
@@ -33,7 +33,7 @@ data class CardItem(
     }
 
     override fun hashCode(): Int {
-        var result = id
+        var result = id.hashCode()
         result = 31 * result + cardName.hashCode()
         result = 31 * result + general.hashCode()
         result = 31 * result + groceries.hashCode()
