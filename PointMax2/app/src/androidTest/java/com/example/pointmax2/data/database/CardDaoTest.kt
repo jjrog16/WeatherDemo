@@ -61,7 +61,7 @@ class CardDaoTest {
         // getOrAwaitValue is located in the LiveDataUtilAndroidTest file provided by Google
         // and allows for the observation of LiveData in testing where you cannot use asynchronous
         // code to run in threads
-        val observeAllCards = dao.getCards().getOrAwaitValue()
+        val observeAllCards = dao.getAllCards().getOrAwaitValue()
         
         assertThat(observeAllCards).contains(testCard)
     }
@@ -69,8 +69,8 @@ class CardDaoTest {
     @Test
     fun insert_insertDuplicateNamesWithUniqueValues_returnsOnlyLastCardInserted() = runBlockingTest {
         val cardsToInsert = arrayOf(
-            CardItem(id = 1, cardName = "Card 1"),
-            CardItem(id = 1, cardName = "Card 1", restaurants = 2.0),
+            CardItem(id = 1, cardName = "Card Start"),
+            CardItem(id = 1, cardName = "Card End", restaurants = 2.0)
         )
     
         // Insert each card into the database
@@ -78,8 +78,8 @@ class CardDaoTest {
             dao.insert(it)
         }
         
-        val observeAllCards = dao.getCards().getOrAwaitValue()
-        assertThat(observeAllCards).doesNotContain(CardItem(cardName = "Card 1"))
+        val observeAllCards = dao.getAllCards().getOrAwaitValue()
+        assertThat(observeAllCards).doesNotContain(CardItem(cardName = "Card Start"))
     }
     
     @Test
@@ -99,7 +99,7 @@ class CardDaoTest {
         dao.deleteAll()
         
         // Observe the database
-        val observeAllCards = dao.getCards().getOrAwaitValue()
+        val observeAllCards = dao.getAllCards().getOrAwaitValue()
         
         assertThat(observeAllCards).isEmpty()
     }
@@ -119,9 +119,27 @@ class CardDaoTest {
         
         dao.deleteByName("Card 2")
         
-        val observeAllCards = dao.getCards().getOrAwaitValue()
+        val observeAllCards = dao.getAllCards().getOrAwaitValue()
         
         assertThat(observeAllCards).doesNotContain(CardItem(cardName = "Card 2"))
+    }
+
+    @Test
+    fun getSpecificCard_findInsertedCard() = runBlockingTest{
+        val cardsToInsert = arrayOf(
+                CardItem(cardName = "Card 1"),
+                CardItem(cardName = "Card 2"),
+                CardItem(cardName = "Card 3")
+        )
+
+        // Insert each card into the database
+        cardsToInsert.forEach {
+            dao.insert(it)
+        }
+
+        val specificCard = dao.getSpecificCard("Card 1").getOrAwaitValue()
+
+        assertThat(specificCard).isEqualTo(CardItem(cardName = "Card 1"))
     }
     
 }

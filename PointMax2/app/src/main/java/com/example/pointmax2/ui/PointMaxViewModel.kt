@@ -47,8 +47,8 @@ class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun insert(card: CardItem) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(card)
+    fun upsert(card: CardItem) = viewModelScope.launch(Dispatchers.IO) {
+        repository.upsert(card)
     }
 
     /**
@@ -57,4 +57,9 @@ class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
     fun deleteByName(cardName: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteByName(cardName)
     }
+
+    /**
+     * Launching a new coroutine to retrieve a card in a non-blocking way
+     */
+    fun getSpecificCard(cardName: String) = repository.getSpecificCard(cardName)
 }

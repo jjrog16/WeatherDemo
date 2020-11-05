@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/earn_rate"
-        android:text="@string/default_earn_rate"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@id/tv_general"
         app:layout_constraintTop_toBottomOf="@id/et_new_card_name"/>
 
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/earn_rate"
-        android:text="@string/default_earn_rate"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@id/tv_groceries"
         app:layout_constraintTop_toBottomOf="@id/et_generalEarn"/>
 
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/earn_rate"
-        android:text="@string/default_earn_rate"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@id/tv_restaurants"
         app:layout_constraintTop_toBottomOf="@id/et_groceriesEarn"/>
 
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/earn_rate"
-        android:text="@string/default_earn_rate"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/tv_airlines"
         app:layout_constraintTop_toBottomOf="@+id/et_restaurantsEarn" />
 
@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/earn_rate"
-        android:text="@string/default_earn_rate"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/tv_travel"
         app:layout_constraintTop_toBottomOf="@+id/et_airlinesEarn" />
 
@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/earn_rate"
-        android:text="@string/default_earn_rate"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/tv_gas"
         app:layout_constraintTop_toBottomOf="@+id/et_travelEarn" />
 

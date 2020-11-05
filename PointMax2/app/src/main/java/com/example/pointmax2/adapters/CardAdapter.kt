@@ -21,7 +21,7 @@ class CardAdapter: RecyclerView.Adapter<CardAdapter.CardViewHolder>(){
     // Implement DiffUtil for notifying when single elements change
     private val differCallBack = object : DiffUtil.ItemCallback<CardItem>(){
         override fun areItemsTheSame(oldItem: CardItem, newItem: CardItem): Boolean {
-            return oldItem.cardName == oldItem.cardName
+            return oldItem.id == oldItem.id
         }
 
         override fun areContentsTheSame(oldItem: CardItem, newItem: CardItem): Boolean {
@@ -50,8 +50,8 @@ class CardAdapter: RecyclerView.Adapter<CardAdapter.CardViewHolder>(){
         holder.itemView.apply {
             tv_card.text = card.cardName
             setOnClickListener {
-                Timber.i("$card selected")
                 onItemClickListener?.let {
+                    Timber.i("Card tapped -> $card")
                     it(card)
                 }
             }

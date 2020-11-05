@@ -10,10 +10,13 @@ import com.example.pointmax2.data.database.entities.CardItem
 @Dao
 interface CardDao {
     @Query("SELECT * from CardItem")
-    fun getCards(): LiveData<List<CardItem>>
+    fun getAllCards(): LiveData<List<CardItem>>
+
+    @Query("SELECT * FROM CardItem WHERE cardName = :name")
+    fun getSpecificCard(name: String): LiveData<CardItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(card: CardItem)
+    suspend fun upsert(card: CardItem)
 
     @Query("DELETE FROM CardItem")
     suspend fun deleteAll()
