@@ -35,7 +35,7 @@ class WalletFragment : Fragment() {
         setUpRecyclerView()
 
         // Load the cards into the adapter
-        viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
+        viewModel.observeAllCards().observe(viewLifecycleOwner, Observer { cards ->
             cards?.let {
                 cardAdapter.differ.submitList(it)
             }

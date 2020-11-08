@@ -43,7 +43,7 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
 
         var result = false
         if (item != null) {
-            viewModel.allCards.observe(viewLifecycleOwner, Observer {cardList ->
+            viewModel.observeAllCards().observe(viewLifecycleOwner, Observer {cardList ->
                 val bestCardList = mutableMapOf<String, Double>()
                 if(cardList.isEmpty()) {
                     Toast.makeText(context, "No cards in wallet", Toast.LENGTH_SHORT).show()
@@ -121,7 +121,7 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
     // Choose the best card
     fun chooseBestCard(item: String): String{
         var result = ""
-        viewModel.allCards.observe(viewLifecycleOwner, Observer {cardList ->
+        viewModel.observeAllCards().observe(viewLifecycleOwner, Observer {cardList ->
             val bestCardList = mutableMapOf<String, Double>()
             if(cardList.isEmpty()) {
                 Toast.makeText(context, "No cards in wallet", Toast.LENGTH_SHORT).show()

@@ -1,5 +1,6 @@
 package com.example.pointmax2.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pointmax2.data.database.entities.CardItem
@@ -10,7 +11,11 @@ import kotlinx.coroutines.launch
 class PointMaxViewModel(private val repository: DefaultCardRepository) : ViewModel(){
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCards = repository.allCards
+    //val allCards = repository.observeAllCards()
+
+    fun observeAllCards(): LiveData<List<CardItem>> {
+        return repository.observeAllCards()
+    }
 
 /*
     // Internally, we use a MutableLiveData to handle navigation to the selected card

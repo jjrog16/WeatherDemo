@@ -11,7 +11,11 @@ class DefaultCardRepository(private val database: CardRoomDatabase): CardReposit
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    val allCards: LiveData<List<CardItem>> = database.cardDao().getAllCards()
+    //val allCards: LiveData<List<CardItem>> = database.cardDao().getAllCards()
+
+    override fun observeAllCards(): LiveData<List<CardItem>>{
+        return database.cardDao().getAllCards()
+    }
 
     override fun getSpecificCard(name: String) : LiveData<CardItem> {
         return database.cardDao().getSpecificCard(name)

@@ -5,6 +5,9 @@ import com.example.pointmax2.data.database.entities.CardItem
 
 interface CardRepository {
 
+    // Observe all cards in a database
+    fun observeAllCards(): LiveData<List<CardItem>>
+
     //Get a specific instance of a card
     fun getSpecificCard(name: String) : LiveData<CardItem>
 

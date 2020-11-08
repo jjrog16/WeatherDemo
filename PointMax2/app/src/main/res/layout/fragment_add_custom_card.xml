@@ -60,6 +60,17 @@
         app:layout_constraintStart_toEndOf="@id/tv_general"
         app:layout_constraintTop_toBottomOf="@id/et_new_card_name" />
 
+    <ImageView
+        android:id="@+id/ivGenerateFields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/et_generalEarn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_done"
+        app:layout_constraintBottom_toBottomOf="@id/et_generalEarn"
+        android:src="@drawable/ic_baseline_arrow_drop_down_circle_24"
+        />
+
     <TextView
         android:id="@+id/tv_groceries"
         android:layout_width="wrap_content"

@@ -19,6 +19,7 @@ import com.example.pointmax2.data.database.entities.CardItem
 import com.example.pointmax2.ui.PointMaxActivity
 import kotlinx.android.synthetic.main.fragment_add_custom_card.*
 import timber.log.Timber
+import java.util.*
 
 class AddCustomCardFragment : Fragment(){
 
@@ -40,9 +41,9 @@ class AddCustomCardFragment : Fragment(){
 
         initializeCustomCard(passedCard)
 
-        viewModel.allCards.observe(viewLifecycleOwner, Observer { cardsInWallet ->
+        viewModel.observeAllCards().observe(viewLifecycleOwner, Observer { cardsInWallet ->
             btn_done.setOnClickListener {
-                val cardToBeEntered = et_new_card_name.text.toString().toUpperCase()
+                val cardToBeEntered = et_new_card_name.text.toString().toUpperCase(Locale.ROOT)
                 if(areFieldsValid()){
                     when {
                         // Check if there is already a card in the database and replace the card if
@@ -63,7 +64,7 @@ class AddCustomCardFragment : Fragment(){
                                             )
                                     )
                                     // Hides keyboard after finishing input
-                                    context?.let { it1 -> hideKeyboard(it1, et_new_card_name) }
+                                    context?.let { context -> hideKeyboard(context, et_new_card_name) }
 
                                     val action = AddCustomCardFragmentDirections.actionNavigationAddCustomCardFragmentToNavigationWallet()
                                     findNavController().navigate(action)
@@ -87,7 +88,7 @@ class AddCustomCardFragment : Fragment(){
                             )
 
                             // Hides keyboard after finishing input
-                            context?.let { it1 -> hideKeyboard(it1, et_new_card_name) }
+                            context?.let { context -> hideKeyboard(context, et_new_card_name) }
 
                             val action = AddCustomCardFragmentDirections.actionNavigationAddCustomCardFragmentToNavigationWallet()
                             findNavController().navigate(action)
@@ -101,6 +102,14 @@ class AddCustomCardFragment : Fragment(){
             viewModel.deleteByName(passedCard.cardName)
             val action = AddCustomCardFragmentDirections.actionNavigationAddCustomCardFragmentToNavigationWallet()
             findNavController().navigate(action)
+        }
+
+        ivGenerateFields.setOnClickListener {
+            et_airlinesEarn.setText(et_generalEarn.text.toString())
+            et_restaurantsEarn.setText(et_generalEarn.text.toString())
+            et_travelEarn.setText(et_generalEarn.text.toString())
+            et_groceriesEarn.setText(et_generalEarn.text.toString())
+            et_gasEarn.setText(et_generalEarn.text.toString())
         }
     }
 

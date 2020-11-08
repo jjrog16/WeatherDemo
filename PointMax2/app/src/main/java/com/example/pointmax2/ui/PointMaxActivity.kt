@@ -2,7 +2,9 @@ package com.example.pointmax2.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.view.menu.ActionMenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -69,11 +71,17 @@ class PointMaxActivity : AppCompatActivity() {
         }
 
         // Move this to Dependency Injection.
-        val database = CardRoomDatabase
-        //val repository = CardRepository(database.getDatabase(this, application).cardDao())
-        val repository = DefaultCardRepository(CardRoomDatabase(this))
+        val database = CardRoomDatabase(this)
+        val repository = DefaultCardRepository(database)
         val viewModelFactory = PointMaxViewModelFactory(repository)
         viewModel = ViewModelProvider(this,viewModelFactory)[PointMaxViewModel::class.java]
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item) {
+            is ActionMenuItem -> findNavController(R.id.nav_host_fragment).navigateUp()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
