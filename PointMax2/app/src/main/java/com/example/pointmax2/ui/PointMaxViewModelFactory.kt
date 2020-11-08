@@ -2,13 +2,13 @@ package com.example.pointmax2.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.pointmax2.data.repositories.CardRepository
+import com.example.pointmax2.data.repositories.DefaultCardRepository
 
 /**
  * Simple ViewModel factory that provides the repository to the ViewModel.
  */
 class PointMaxViewModelFactory(
-        private val repository: CardRepository
+        private val repository: DefaultCardRepository
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

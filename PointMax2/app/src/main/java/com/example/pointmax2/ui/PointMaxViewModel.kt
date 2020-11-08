@@ -1,22 +1,19 @@
 package com.example.pointmax2.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pointmax2.data.database.entities.CardItem
-import com.example.pointmax2.data.repositories.CardRepository
-import kotlinx.coroutines.CoroutineScope
+import com.example.pointmax2.data.repositories.DefaultCardRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
+class PointMaxViewModel(private val repository: DefaultCardRepository) : ViewModel(){
 
     // The external LiveData interface to the property is immutable, so only this class can modify
     val allCards = repository.allCards
 
-    // Internally, we use a MutableLiveData to handle navigation to the selected cxa
+/*
+    // Internally, we use a MutableLiveData to handle navigation to the selected card
     private val _navigateToSelectedCard = MutableLiveData<CardItem>()
 
     // The external immutable LiveData for the navigation property
@@ -28,21 +25,7 @@ class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-//
-//    /**
-//     * When the card is clicked, set the [_navigateToSelectedCard] [MutableLiveData]
-//     * @param card The [CardItem] that was clicked on.
-//     */
-//    fun displayCardDetails(card: CardItem) {
-//        _navigateToSelectedCard.value = card
-//    }
-//
-//    /**
-//     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
-//     */
-//    fun displayCardDetailsComplete() {
-//        _navigateToSelectedCard.value = null
-//    }
+*/
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
@@ -59,7 +42,7 @@ class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
     }
 
     /**
-     * Launching a new coroutine to retrieve a card in a non-blocking way
+     * Function for observing a specfic card from the Room database
      */
     fun getSpecificCard(cardName: String) = repository.getSpecificCard(cardName)
 }

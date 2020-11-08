@@ -54,9 +54,9 @@ class CardDaoTest {
      */
      
     @Test
-    fun insert_insertACard_returnsIfCardExists() = runBlockingTest {
+    fun upsert_insertACard_returnsIfCardExists() = runBlockingTest {
         val testCard = CardItem(cardName = "Amex Platinum", airlines = 5.0)
-        dao.insert(testCard)
+        dao.upsert(testCard)
         
         // getOrAwaitValue is located in the LiveDataUtilAndroidTest file provided by Google
         // and allows for the observation of LiveData in testing where you cannot use asynchronous
@@ -67,7 +67,7 @@ class CardDaoTest {
     }
     
     @Test
-    fun insert_insertDuplicateNamesWithUniqueValues_returnsOnlyLastCardInserted() = runBlockingTest {
+    fun upsert_insertDuplicateNamesWithUniqueValues_returnsOnlyLastCardInserted() = runBlockingTest {
         val cardsToInsert = arrayOf(
             CardItem(id = 1, cardName = "Card Start"),
             CardItem(id = 1, cardName = "Card End", restaurants = 2.0)
@@ -75,7 +75,7 @@ class CardDaoTest {
     
         // Insert each card into the database
         cardsToInsert.forEach {
-            dao.insert(it)
+            dao.upsert(it)
         }
         
         val observeAllCards = dao.getAllCards().getOrAwaitValue()
@@ -92,7 +92,7 @@ class CardDaoTest {
         
         // Insert each card into the database
         cardsToInsert.forEach {
-            dao.insert(it)
+            dao.upsert(it)
         }
         
         // Clear all cards in the database
@@ -114,7 +114,7 @@ class CardDaoTest {
     
         // Insert each card into the database
         cardsToInsert.forEach {
-            dao.insert(it)
+            dao.upsert(it)
         }
         
         dao.deleteByName("Card 2")
@@ -134,7 +134,7 @@ class CardDaoTest {
 
         // Insert each card into the database
         cardsToInsert.forEach {
-            dao.insert(it)
+            dao.upsert(it)
         }
 
         val specificCard = dao.getSpecificCard("Card 1").getOrAwaitValue()

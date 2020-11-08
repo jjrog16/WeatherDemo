@@ -40,14 +40,14 @@ class AddCustomCardFragment : Fragment(){
 
         initializeCustomCard(passedCard)
 
-        viewModel.allCards.observe(viewLifecycleOwner, Observer { cardList ->
-            bt_done.setOnClickListener {
+        viewModel.allCards.observe(viewLifecycleOwner, Observer { cardsInWallet ->
+            btn_done.setOnClickListener {
                 val cardToBeEntered = et_new_card_name.text.toString().toUpperCase()
                 if(areFieldsValid()){
                     when {
                         // Check if there is already a card in the database and replace the card if
                         // there is a card in the database
-                        isCardNameInList(cardList, cardToBeEntered) -> {
+                        isCardNameInList(cardsInWallet, cardToBeEntered) -> {
                             viewModel.getSpecificCard(cardToBeEntered).observe(viewLifecycleOwner, Observer { specificCard ->
                                 cardToBeEntered.let { cardNameToBeEntered ->
                                     viewModel.upsert(
@@ -97,7 +97,7 @@ class AddCustomCardFragment : Fragment(){
             }
         })
 
-        bt_delete.setOnClickListener{
+        btn_delete.setOnClickListener{
             viewModel.deleteByName(passedCard.cardName)
             val action = AddCustomCardFragmentDirections.actionNavigationAddCustomCardFragmentToNavigationWallet()
             findNavController().navigate(action)
@@ -164,14 +164,14 @@ class AddCustomCardFragment : Fragment(){
     }
 
     // Check if the name about to be entered is already in the list of cards
-    private fun isCardNameInList(cardList: List<CardItem>, cardNameEditText: String) : Boolean{
-        cardList.forEach {
+    private fun isCardNameInList(cardsInWallet: List<CardItem>, cardNameEditText: String) : Boolean{
+        cardsInWallet.forEach {
              return (it.cardName == cardNameEditText)
         }
         return false
     }
 
-    // Returns if the editText field for the Card Name is left empty
+    // Returns if the editText field is left empty
     private fun isTextFieldEmpty(textField: Editable) : Boolean {
         return (TextUtils.isEmpty(textField.toString()) or textField.toString().trim().matches("\\s*".toRegex()))
     }

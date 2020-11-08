@@ -14,4 +14,9 @@
     <string name="general">General:</string>
     <string name="default_earn_rate">1.0</string>
     <string name="choose_a_category">Choose a Category</string>
+    <string name="groceries">Groceries:</string>
+    <string name="restaurants">Restaurants:</string>
+    <string name="airlines">Airlines:</string>
+    <string name="travel">Travel:</string>
+    <string name="gas">Gas:</string>
 </resources>

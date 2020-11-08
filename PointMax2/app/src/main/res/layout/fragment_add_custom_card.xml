@@ -10,6 +10,7 @@
         android:id="@+id/et_new_card_name"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:autofillHints="@string/enter_card_name"
         android:ems="10"
         android:hint="@string/enter_card_name"
@@ -18,92 +19,119 @@
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:id="@+id/bt_done"
+        android:id="@+id/btn_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/add_card_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/et_new_card_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_general"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
         android:text="@string/general"
+        app:layout_constraintBottom_toBottomOf="@+id/et_generalEarn"
+        app:layout_constraintEnd_toStartOf="@id/tv_general"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_new_card_name"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintVertical_bias="0.785" />
 
     <EditText
         android:id="@+id/et_generalEarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/earn_rate"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_general"
-        app:layout_constraintTop_toBottomOf="@id/et_new_card_name"/>
+        app:layout_constraintTop_toBottomOf="@id/et_new_card_name" />
 
     <TextView
         android:id="@+id/tv_groceries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Groceries:"
+        android:layout_marginStart="16dp"
+        android:text="@string/groceries"
+        app:layout_constraintBottom_toBottomOf="@+id/et_groceriesEarn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_general"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_general"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/et_groceriesEarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/earn_rate"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toEndOf="@id/tv_groceries"
-        app:layout_constraintTop_toBottomOf="@id/et_generalEarn"/>
+        app:layout_constraintTop_toBottomOf="@id/et_generalEarn" />
 
     <TextView
         android:id="@+id/tv_restaurants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Restaurants:"
+        android:layout_marginStart="24dp"
+        android:text="@string/restaurants"
+        app:layout_constraintBottom_toBottomOf="@+id/et_restaurantsEarn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_groceries"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_groceries"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/et_restaurantsEarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/earn_rate"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toEndOf="@id/tv_restaurants"
-        app:layout_constraintTop_toBottomOf="@id/et_groceriesEarn"/>
+        app:layout_constraintTop_toBottomOf="@id/et_groceriesEarn" />
 
     <TextView
         android:id="@+id/tv_airlines"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Airlines:"
+        android:layout_marginStart="8dp"
+        android:text="@string/airlines"
+        app:layout_constraintBottom_toBottomOf="@+id/et_airlinesEarn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_restaurants" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_restaurants"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/et_airlinesEarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/earn_rate"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toEndOf="@+id/tv_airlines"
         app:layout_constraintTop_toBottomOf="@+id/et_restaurantsEarn" />
 
@@ -112,17 +140,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Travel:"
+        android:layout_marginStart="24dp"
+        android:text="@string/travel"
+        app:layout_constraintBottom_toBottomOf="@+id/et_travelEarn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_airlines" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_airlines"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/et_travelEarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="100dp"
         android:hint="@string/earn_rate"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/tv_travel"
         app:layout_constraintTop_toBottomOf="@+id/et_airlinesEarn" />
 
@@ -131,22 +165,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Gas:"
+        android:layout_marginStart="28dp"
+        android:text="@string/gas"
+        app:layout_constraintBottom_toBottomOf="@+id/et_gasEarn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_travel" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_travel"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/et_gasEarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/earn_rate"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toEndOf="@+id/tv_gas"
         app:layout_constraintTop_toBottomOf="@+id/et_travelEarn" />
 
     <Button
-        android:id="@+id/bt_delete"
+        android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

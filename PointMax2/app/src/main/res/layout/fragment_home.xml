@@ -5,18 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
-        android:id="@+id/category_button"
+        android:id="@+id/btn_category_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose_a_category"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/top_card"
+        app:layout_constraintBottom_toTopOf="@id/tv_top_card"
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/top_card"
+        android:id="@+id/tv_top_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,5 +28,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_card" />
+        app:layout_constraintTop_toBottomOf="@id/tv_top_card" />
 </androidx.constraintlayout.widget.ConstraintLayout>

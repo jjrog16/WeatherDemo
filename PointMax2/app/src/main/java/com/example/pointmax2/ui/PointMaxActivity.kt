@@ -11,7 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.pointmax2.R
 import com.example.pointmax2.data.database.CardRoomDatabase
 import com.example.pointmax2.data.database.entities.CardItem
-import com.example.pointmax2.data.repositories.CardRepository
+import com.example.pointmax2.data.repositories.DefaultCardRepository
 import com.example.pointmax2.ui.wallet.WalletFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -71,7 +71,7 @@ class PointMaxActivity : AppCompatActivity() {
         // Move this to Dependency Injection.
         val database = CardRoomDatabase
         //val repository = CardRepository(database.getDatabase(this, application).cardDao())
-        val repository = CardRepository(CardRoomDatabase(this))
+        val repository = DefaultCardRepository(CardRoomDatabase(this))
         val viewModelFactory = PointMaxViewModelFactory(repository)
         viewModel = ViewModelProvider(this,viewModelFactory)[PointMaxViewModel::class.java]
 
