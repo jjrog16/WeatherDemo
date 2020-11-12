@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pointmax2.data.database.entities.CardItem
+import com.example.pointmax2.data.repositories.CardRepository
 import com.example.pointmax2.data.repositories.DefaultCardRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PointMaxViewModel(private val repository: DefaultCardRepository) : ViewModel(){
+class PointMaxViewModel(private val repository: CardRepository) : ViewModel(){
 
     // The external LiveData interface to the property is immutable, so only this class can modify
     //val allCards = repository.observeAllCards()
@@ -44,6 +45,13 @@ class PointMaxViewModel(private val repository: DefaultCardRepository) : ViewMod
      */
     fun deleteByName(cardName: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteByName(cardName)
+    }
+
+    /**
+     * Launching a new coroutine to delete the data in a non-blocking way
+     */
+    fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAll()
     }
 
     /**

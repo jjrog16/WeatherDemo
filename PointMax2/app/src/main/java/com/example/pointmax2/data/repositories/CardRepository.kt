@@ -17,4 +17,7 @@ interface CardRepository {
     // Delete a selected card
     suspend fun deleteByName(name: String)
 
+    // Delete all cards
+    suspend fun deleteAll()
+
 }
