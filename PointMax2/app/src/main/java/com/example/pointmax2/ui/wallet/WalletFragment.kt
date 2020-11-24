@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_wallet.*
 import timber.log.Timber
 
 class WalletFragment : Fragment() {
+
     private lateinit var viewModel: PointMaxViewModel
     private lateinit var cardAdapter: CardAdapter
 
