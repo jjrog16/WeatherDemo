@@ -7,6 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ui.weather.R
 
-class WeekFragment : Fragment() {
+class WeekFragment : Fragment(R.layout.fragment_week) {
 
 }
