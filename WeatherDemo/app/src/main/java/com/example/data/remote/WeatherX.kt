@@ -1,6 +1,6 @@
-package com.example.ui
+package com.example.data.remote
 
-data class WeatherXX(
+data class WeatherX(
     val description: String,
     val icon: String,
     val id: Int,

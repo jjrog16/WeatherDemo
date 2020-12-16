@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.data.remote
 
 data class Daily(
     val clouds: Int,

@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.data.remote
 
 data class WeatherResponse(
     val alerts: List<Alert>,
