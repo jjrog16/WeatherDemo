@@ -12,7 +12,7 @@ data class Hourly(
     val temp: Double,
     val uvi: Int,
     val visibility: Int,
-    val weather: List<WeatherXX>,
+    val weather: List<Weather>,
     val wind_deg: Int,
     val wind_speed: Double
 )
