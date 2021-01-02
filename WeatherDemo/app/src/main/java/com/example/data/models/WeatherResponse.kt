@@ -1,4 +1,4 @@
-package com.example.data.remote
+package com.example.data.models
 
 data class WeatherResponse(
     val daily: List<Daily>,

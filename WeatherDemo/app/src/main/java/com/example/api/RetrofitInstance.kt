@@ -1,6 +1,5 @@
 package com.example.api
 
-import com.example.data.remote.Weather
 import com.example.util.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

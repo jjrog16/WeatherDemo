@@ -1,6 +1,6 @@
 package com.example.api
 
-import com.example.data.remote.WeatherResponse
+import com.example.data.models.WeatherResponse
 import com.example.util.Constants.Companion.API_ID
 import retrofit2.Response
 import retrofit2.http.GET

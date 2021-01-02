@@ -1,19 +1,32 @@
 package com.example.ui.week
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ui.weather.R
-import kotlinx.android.synthetic.main.fragment_week.*
 
-class WeekFragment : Fragment(R.layout.fragment_week) {
+class WeekFragment : Fragment() {
+
+    companion object {
+        fun newInstance() = WeekFragment()
+    }
+
+    private lateinit var viewModel: WeekViewModel
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_week, container, false)
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(WeekViewModel::class.java)
+        // TODO: Use the ViewModel
+    }
+
 }

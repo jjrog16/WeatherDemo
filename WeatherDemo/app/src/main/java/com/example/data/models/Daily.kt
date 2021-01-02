@@ -1,9 +1,14 @@
-package com.example.data.remote
+package com.example.data.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Daily(
+    @PrimaryKey
+    val dt: Int,
     val clouds: Int,
     val dew_point: Double,
-    val dt: Int,
     val feels_like: FeelsLike,
     val humidity: Int,
     val pop: Int,
