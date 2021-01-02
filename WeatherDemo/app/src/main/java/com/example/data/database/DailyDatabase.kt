@@ -1,4 +1,35 @@
 package com.example.data.database
 
-class DailyDatabase {
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.data.models.Daily
+
+@Database(
+    entities = [Daily::class],
+    version = 1
+)
+@TypeConverters(Converters::class)
+abstract class DailyDatabase : RoomDatabase() {
+
+    abstract fun getDailyDao(): DailyDao
+
+    companion object {
+        @Volatile
+        private var instance: DailyDatabase? = null
+        private val LOCK = Any()
+
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: createDatabase(context).also { instance = it }
+        }
+
+        private fun createDatabase(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                DailyDatabase::class.java,
+                "daily_db.db"
+            ).build()
+    }
 }
