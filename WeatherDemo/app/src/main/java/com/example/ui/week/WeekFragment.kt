@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ui.weather.R
+import com.example.ui.weather.WeatherViewModel
 
 class WeekFragment : Fragment() {
 
@@ -14,7 +15,7 @@ class WeekFragment : Fragment() {
         fun newInstance() = WeekFragment()
     }
 
-    private lateinit var viewModel: WeekViewModel
+    private lateinit var viewModel: WeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +26,7 @@ class WeekFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(WeekViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

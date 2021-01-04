@@ -12,13 +12,13 @@ import com.example.data.models.Daily
     version = 1
 )
 @TypeConverters(Converters::class)
-abstract class DailyDatabase : RoomDatabase() {
+abstract class OpenWeatherDatabase : RoomDatabase() {
 
-    abstract fun getDailyDao(): DailyDao
+    abstract fun dailyDao(): OpenWeatherDao
 
     companion object {
         @Volatile
-        private var instance: DailyDatabase? = null
+        private var instance: OpenWeatherDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -28,7 +28,7 @@ abstract class DailyDatabase : RoomDatabase() {
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                DailyDatabase::class.java,
+                OpenWeatherDatabase::class.java,
                 "daily_db.db"
             ).build()
     }

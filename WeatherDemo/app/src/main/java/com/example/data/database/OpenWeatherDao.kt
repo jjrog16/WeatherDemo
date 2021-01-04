@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.data.models.Daily
 
 @Dao
-interface DailyDao {
+interface OpenWeatherDao {
 
     // Returns ID that was inserted
     @Insert(onConflict = OnConflictStrategy.REPLACE)
