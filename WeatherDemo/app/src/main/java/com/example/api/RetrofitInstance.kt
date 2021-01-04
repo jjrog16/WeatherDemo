@@ -26,7 +26,7 @@ class RetrofitInstance {
 
         // The API object available to use to make network requests
         val api by lazy {
-            retrofit.create(WeatherAPI::class.java)
+            retrofit.create(OpenWeatherAPI::class.java)
         }
     }
 }

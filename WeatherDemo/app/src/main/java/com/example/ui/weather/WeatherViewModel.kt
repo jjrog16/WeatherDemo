@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.models.WeatherResponse
 import com.example.data.repositories.WeatherRepository
+import com.example.util.Constants.Companion.LATITUDE
+import com.example.util.Constants.Companion.LONGITUDE
 import com.example.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -14,23 +16,29 @@ class WeatherViewModel(
 ) : ViewModel() {
 
     val openWeather: MutableLiveData<Resource<WeatherResponse>> = MutableLiveData()
+    var units = "imperial"
 
     init {
-        //getBreakingNews("us")
+        getOpenWeather(
+                exclude = "minutely,hourly,alerts,current,feels_like",
+                latitude = LATITUDE,
+                longitude = LONGITUDE,
+                units = units
+        )
     }
 
-    /*fun getOpenWeather(countryCode: String) = viewModelScope.launch {
-        breakingNews.postValue(Resource.Loading())
-        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
-        breakingNews.postValue(handleBreakingNewsResponse(response))
-    }*/
+    fun getOpenWeather(exclude: String, latitude: Double, longitude: Double, units: String) = viewModelScope.launch {
+        openWeather.postValue(Resource.Loading())
+        val response = weatherRepository.getOpenWeather(exclude, latitude, longitude, units)
+        openWeather.postValue(handleOpenWeatherResponse(response))
+    }
 
-    /*private fun handleBreakingNewsResponse(response: Response<WeatherResponse>) : Resource<WeatherResponse> {
+    private fun handleOpenWeatherResponse(response: Response<WeatherResponse>) : Resource<WeatherResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
         }
         return Resource.Error(response.message())
-    }*/
+    }
 }
