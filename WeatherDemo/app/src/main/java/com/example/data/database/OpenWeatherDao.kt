@@ -9,7 +9,7 @@ interface OpenWeatherDao {
 
     // Returns ID that was inserted
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(daily: Daily): Int
+    suspend fun upsert(daily: Daily)
 
     @Query("SELECT * FROM Daily")
     fun getAllDaily(): LiveData<List<Daily>>
