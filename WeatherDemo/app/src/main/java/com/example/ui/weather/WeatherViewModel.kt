@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.models.WeatherResponse
 import com.example.data.repositories.WeatherRepository
+import com.example.util.Constants.Companion.API_ID
 import com.example.util.Constants.Companion.LATITUDE
 import com.example.util.Constants.Companion.LONGITUDE
 import com.example.util.Resource
@@ -20,6 +21,7 @@ class WeatherViewModel(
 
     init {
         getOpenWeather(
+                appid = API_ID,
                 exclude = "minutely,hourly,alerts,current,feels_like",
                 latitude = LATITUDE,
                 longitude = LONGITUDE,
@@ -27,9 +29,9 @@ class WeatherViewModel(
         )
     }
 
-    fun getOpenWeather(exclude: String, latitude: Double, longitude: Double, units: String) = viewModelScope.launch {
+    fun getOpenWeather(appid: String, exclude: String, latitude: Double, longitude: Double, units: String) = viewModelScope.launch {
         openWeather.postValue(Resource.Loading())
-        val response = weatherRepository.getOpenWeather(exclude, latitude, longitude, units)
+        val response = weatherRepository.getOpenWeather(appid, exclude, latitude, longitude, units)
         openWeather.postValue(handleOpenWeatherResponse(response))
     }
 
