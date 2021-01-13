@@ -10,5 +10,5 @@ data class Daily(
     val sunrise: Int,
     val sunset: Int,
     val temp: Temp,
-    val weather: Weather
+    val weather: List<Weather>
 )

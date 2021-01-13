@@ -18,12 +18,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromWeather(weather: Weather): String {
-        return weather.main
+    fun fromWeather(weather: List<Weather>): String {
+        return weather[0].main
     }
 
     @TypeConverter
-    fun toWeather(main: String) : Weather {
-        return Weather(main)
+    fun toWeather(main: String) : List<Weather> {
+        return listOf(Weather(main))
     }
 }
